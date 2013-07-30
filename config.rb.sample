@@ -1,0 +1,19 @@
+## sfdc options
+$sfdcuser = "sfdcuser"
+$sfdcpassword =  "password+token"
+
+
+#ftp stuff
+$ftphost = '70.34.32.111'
+$ftpuser = 'user'       
+$ftppassword = 'password%'
+
+
+### mail options
+$mailoptions = { :address              => "smtp.gmail.com",
+            :port                 => 587,
+            :domain               => 'www.copdfoundation.org',
+            :user_name            => 'copdfoundationscreener@gmail.com',
+            :password             => 'password',
+            :authentication       => 'plain',
+            :enable_starttls_auto => true  }
