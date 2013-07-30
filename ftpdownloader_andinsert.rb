@@ -47,6 +47,8 @@ def downloadfile
 
     #starterup.. ftp login
     ftp = Net::FTP::new($ftphost)
+    ftp.passive = false
+    ftp.debug_mode = true
     ftp.login($ftpuser,$ftppassword)
     #should check and log errors here
 
