@@ -18,11 +18,11 @@ $log.level = Logger::DEBUG
 $log.debug("Created logger")
 
 ## sfdc options
-testfile = nil # "csvtest.csv" #set this to real filename to skip FTP files, otherwise NULL to use FTP
-#testfile = "csvtest.csv"
+#estfile = "testImportData1.csv" # "csvtest.csv" #set this to real filename to skip FTP files, otherwise NULL to use FTP
+testfile = "testdata.csv"
 
 #for logging into sandbox
-sfdcsandbox =  true
+sfdcsandbox =  false
 
 mailrecepients = "choppen5@gmail.com,choppen5@yahoo.com"
 
@@ -47,7 +47,7 @@ def downloadfile
 
     #starterup.. ftp login
     ftp = Net::FTP::new($ftphost)
-    ftp.passive = false
+    ftp.passive = true
     ftp.debug_mode = true
     ftp.login($ftpuser,$ftppassword)
     #should check and log errors here
@@ -245,7 +245,12 @@ if contactarray.count > 0
     contactarray.each { |contact|  
       contactid = resultrecords[count][0]  #resultrecords[count][0] matches the result record to the input array.  
       puts "contact id = #{contactid}"
-      contactarray[count]["ContactId"] = contactid #added a hash key "ContactId"    
+      if contactid == ""
+         puts "Error, contact = #{resultrecords[count]} was not inserted correctly, missing id. Will not create a case. "
+         puts resultrecords[count][3]
+      else
+        contactarray[count]["ContactId"] = contactid #added a hash key "ContactId"    
+      end 
       count += 1
     }
 
